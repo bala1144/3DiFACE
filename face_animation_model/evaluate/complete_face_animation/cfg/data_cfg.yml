@@ -1,0 +1,33 @@
+data_cfg:
+  target: data.hdtf_dataset.precompute_windows_dataset.DataModuleFromConfig_windows
+  dataset: "voca_former_vert_pred_full_training"
+  condition_id_to_visualize: "FaceTalk_170725_00137_TA"
+  conditiion_id: 2
+  params:
+    dataset: "vocaset"
+    dataset_root: "projects/dataset/HDTF"
+    wav_path: "wav"
+    vertices_path: "vertices_npy"
+    template_file: "templates.pkl"
+    pkl_path: "metrical_tracker_dict"
+    num_iden_cls: 8 # should be the same the object
+    use_identity: False # if True, all the idenitites are set to the same
+    normalize_pose: False
+    to_6d_rotation: False
+    # sequence_for_testing: [0, 32]
+    # sequence_for_validation: [32, 40]
+    # sequence_for_training: [40, 350]
+    sequence_for_testing: [0, 355]
+    sequence_for_validation: [0, 1]
+    sequence_for_training: [0, 1]
+    batch_size: 64
+    window: 288
+    fps: 30
+    audio_sample_rate: 16000
+    num_patches_per_seq: 8
+    num_workers: 8
+    smooth_sigma: 2.0
+    max_seq_len: 1800
+    precompute_window_samples: True
+    sample_type: "random_crop"
+    standardize_data: True

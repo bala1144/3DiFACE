@@ -1,0 +1,53 @@
+head_motion_model:
+  model_path: pretrained_models/head_reg_16_ip_mp0_02_rd02_3D_stdnorm_waud_skip_vel_loss0010 ### used for synthesis and inpainting
+  # model_path: pretrained_models/head_reg_14_kf_mp0_02_rd02_3D_stdnorm_waud_skip_vel_loss0010 # used for keyframing
+  model_ckpt: "model000100035" 
+
+face_motion_model:
+  ### All subjects
+  #####  FaceTalk_170728_03272_TA FaceTalk_170904_00128_TA FaceTalk_170725_00137_TA FaceTalk_170915_00223_TA FaceTalk_170811_03274_TA FaceTalk_170913_03279_TA FaceTalk_170904_03276_TA FaceTalk_170912_03278_TA
+
+  #### Generalized model for voca subjects "FaceTalk_170731_00024_TA"
+  # # model_path:  pretrained_models/cond_012_17_00_concat_prob10_vel10
+  # model_ckpt: "model000050000"
+  # identity_for_testing: "FaceTalk_170725_00137_TA"
+  # condition_for_tesing: "FaceTalk_170725_00137_TA"
+
+  ##### personalized model synthesis for "FaceTalk_170809_00138_TA"
+  # model_path:  pretrained_models/sa_03_138_fo_ns18
+  # model_ckpt: "model000004000"
+  # identity_for_testing: "FaceTalk_170809_00138_TA"
+  # condition_for_tesing: "FaceTalk_170809_00138_TA"
+
+  #### personalized model for subject "FaceTalk_170731_00024_TA"
+  model_path:  pretrained_models/sa_03_024_fo_ns18
+  model_ckpt: "model000010000"
+  identity_for_testing: "FaceTalk_170731_00024_TA"
+  condition_for_tesing: "FaceTalk_170731_00024_TA"
+  use_voca_template_for_vis: True
+  condition_index: 2
+  guidance_scale: 0.5
+  guidance_sampling: True
+
+synthensis_mode: "edit" # generate or editing
+exp_cfg:
+  method: "both" # synthesize both head and face or just face
+  # edit_part: ["face", "head"]
+  edit_part: ["head"]
+  num_frames_per_sample: 576
+  num_of_samples: 1
+  experiment_name: "complete_model_test_HDTF_user_138_edit_time_test"
+  dump_steps: []
+  dataroot_path: "voca"
+  render: True
+  use_time_stamp: False
+  graph_vis: True
+  ####
+  ####
+  #### edit config #### 
+  edit_file: "pretrained_models/head_reg_16_ip_mp0_02_rd02_3D_stdnorm_waud_skip_vel_loss0010/complete_model_test_HDTF_user_138_edit_time_test_model000100035/npy/wD-jLNmRVfw_ss00.npy"
+  edit_mode: "in_between" # or in_between, keyframe, keyframe_swap
+  key_frames_dict: # copying the frame from -> to
+    - 100, 100
+    - 200, 200
+    - 300, 300
